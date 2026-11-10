@@ -1,1 +1,31 @@
-hi this is minny!!!!
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building the project'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing the project'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t devops:latest .'
+            }
+        }
+
+        stage('Docker Images') {
+            steps {
+                bat 'docker images'
+            }
+        }
+    }
+}
+
